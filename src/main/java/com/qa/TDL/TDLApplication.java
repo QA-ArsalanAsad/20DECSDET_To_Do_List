@@ -1,13 +1,14 @@
-package com.example.TDL;
+package com.qa.TDL;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class Application {
+import com.qa.TDL.TDLApplication;
 
+@SpringBootApplication
+public class TDLApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(TDLApplication.class, args);
 	}
 	
 
