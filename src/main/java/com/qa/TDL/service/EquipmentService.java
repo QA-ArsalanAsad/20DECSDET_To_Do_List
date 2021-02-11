@@ -1,5 +1,8 @@
 package com.qa.TDL.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,14 @@ public class EquipmentService {
 
 	public EquipmentDTO create(Equipment equipment) {
 		return this.mapToDTO(this.eRepo.save(equipment));
+	}
+
+	public List<EquipmentDTO> readAll() {
+		return this.eRepo.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
+
+	public EquipmentDTO readLatest(Long id) {
+		return this.mapToDTO(this.eRepo.findById(id).orElseThrow());
 	}
 
 }
