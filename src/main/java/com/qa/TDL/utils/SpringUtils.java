@@ -2,10 +2,9 @@ package com.qa.TDL.utils;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
+import java.beans.PropertyDescriptor;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.validation.metadata.PropertyDescriptor;
 
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -25,7 +24,5 @@ public class SpringUtils {
 
 		}
 		return pName.toArray(new String[pName.size()]);
-		}
 	}
-
 }
