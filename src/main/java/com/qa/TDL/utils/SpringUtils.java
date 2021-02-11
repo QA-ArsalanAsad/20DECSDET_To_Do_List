@@ -1,3 +1,4 @@
+
 package com.qa.TDL.utils;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
@@ -26,3 +27,5 @@ public class SpringUtils {
 		return pName.toArray(new String[pName.size()]);
 	}
 }
+
+
