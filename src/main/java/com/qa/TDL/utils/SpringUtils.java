@@ -22,10 +22,7 @@ public class SpringUtils {
 		for (PropertyDescriptor desc : wrappedSrcObj.getPropertyDescriptors()) {
 			if (wrappedSrcObj.getPropertyValue(desc.getName()) == null)
 				pName.add(desc.getName());
-
 		}
 		return pName.toArray(new String[pName.size()]);
 	}
 }
-
-
