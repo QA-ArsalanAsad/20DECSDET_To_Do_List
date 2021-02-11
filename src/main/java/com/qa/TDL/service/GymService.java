@@ -48,4 +48,9 @@ public class GymService {
 		return this.mapToDTO(this.repo.save(update));
 	}
 
+	public boolean delete(Long id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
+	}
+
 }
