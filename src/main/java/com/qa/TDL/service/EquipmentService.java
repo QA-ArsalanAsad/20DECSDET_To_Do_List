@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.TDL.DTO.EquipmentDTO;
+import com.qa.TDL.exceptions.EquipmentExceptions;
 import com.qa.TDL.persistence.domain.Equipment;
 import com.qa.TDL.persistence.repo.EquipmentRepo;
 import com.qa.TDL.utils.SpringUtils;
@@ -39,11 +40,11 @@ public class EquipmentService {
 	}
 
 	public EquipmentDTO readLatest(Long id) {
-		return this.mapToDTO(this.eRepo.findById(id).orElseThrow());
+		return this.mapToDTO(this.eRepo.findById(id).orElseThrow(EquipmentExceptions::new));
 	}
 
 	public EquipmentDTO update(EquipmentDTO eDTO, Long id) {
-		Equipment update = this.eRepo.findById(id).orElseThrow();
+		Equipment update = this.eRepo.findById(id).orElseThrow(EquipmentExceptions::new);
 		SpringUtils.mergeNotNull(eDTO, update);
 		return this.mapToDTO(this.eRepo.save(update));
 	}
