@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.TDL.DTO.GymDTO;
+import com.qa.TDL.exceptions.GymExceptions;
 import com.qa.TDL.persistence.domain.Gym;
 import com.qa.TDL.persistence.repo.GymRepo;
 import com.qa.TDL.utils.SpringUtils;
@@ -39,11 +40,11 @@ public class GymService {
 	}
 
 	public GymDTO readLatest(Long id) {
-		return this.mapToDTO(this.repo.findById(id).orElseThrow());
+		return this.mapToDTO(this.repo.findById(id).orElseThrow(GymExceptions::new));
 	}
 
 	public GymDTO update(GymDTO gymDTO, Long id) {
-		Gym update = this.repo.findById(id).orElseThrow();
+		Gym update = this.repo.findById(id).orElseThrow(GymExceptions::new);
 		SpringUtils.mergeNotNull(gymDTO, update);
 		return this.mapToDTO(this.repo.save(update));
 	}
