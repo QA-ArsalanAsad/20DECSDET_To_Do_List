@@ -48,4 +48,9 @@ public class EquipmentService {
 		return this.mapToDTO(this.eRepo.save(update));
 	}
 
+	public boolean delete(Long id) {
+		this.eRepo.deleteById(id);
+		return !this.eRepo.existsById(id);
+	}
+
 }
