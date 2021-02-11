@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.qa.TDL.DTO.EquipmentDTO;
 import com.qa.TDL.persistence.domain.Equipment;
 import com.qa.TDL.persistence.repo.EquipmentRepo;
+import com.qa.TDL.utils.SpringUtils;
 
 @Service
 public class EquipmentService {
@@ -39,6 +40,12 @@ public class EquipmentService {
 
 	public EquipmentDTO readLatest(Long id) {
 		return this.mapToDTO(this.eRepo.findById(id).orElseThrow());
+	}
+
+	public EquipmentDTO update(EquipmentDTO eDTO, Long id) {
+		Equipment update = this.eRepo.findById(id).orElseThrow();
+		SpringUtils.mergeNotNull(eDTO, update);
+		return this.mapToDTO(this.eRepo.save(update));
 	}
 
 }
