@@ -1,5 +1,6 @@
 package com.qa.TDL.persistence.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,12 +17,11 @@ import org.hibernate.annotations.OnDeleteAction;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @Entity
 public class Gym {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -29,29 +29,27 @@ public class Gym {
 	private String name;
 	@NotNull
 	private String type;
-	
-	@OneToMany(mappedBy ="gym", fetch=FetchType.EAGER)
+
+	@OneToMany(mappedBy = "gym", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<Equipment> equipment;
-	
-	
+	private List<Equipment> equipment = new ArrayList<>();
+
 	public Gym(Long id, @NotNull String name, @NotNull String type) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.type = type;
 	}
-	
 
 	public Gym(@NotNull String name, @NotNull String type) {
 		super();
 		this.name = name;
 		this.type = type;
 	}
-	
-	//Again below will contain all the required methods as in GymDTO to show what LOMBOK is doing
 
- 
+	// Again below will contain all the required methods as in GymDTO to show what
+	// LOMBOK is doing
+
 //	public Gym() {
 //		super();
 //		
@@ -148,9 +146,5 @@ public class Gym {
 //		return true;
 //	}
 //	
-	
-	
-	
 
 }
-

@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Equipment {
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotNull
 	private String type;
@@ -24,22 +24,20 @@ public class Equipment {
 	private int price;
 	@ManyToOne
 	private Gym gym = null;
-	
-	public Equipment(@NotNull String type, @NotNull int price, Gym gym) {
+
+	public Equipment(@NotNull String type, @NotNull int price) {
 		super();
 		this.type = type;
 		this.price = price;
-		this.gym = gym;
+
 	}
 
-	public Equipment(Long id, @NotNull String type, @NotNull int price, Gym gym) {
+	public Equipment(Long id, @NotNull String type, @NotNull int price) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.price = price;
-		this.gym = gym;
+
 	}
-	
-	
 
 }
