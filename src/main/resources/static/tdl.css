@@ -1,0 +1,14 @@
+
+div.container{
+    
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    
+}
+
+
+p::first-line {
+    color : blue;
+    font-family: 'Times New Roman', Times, serif;
+}
