@@ -10,9 +10,23 @@
 <body>
     <br>
     <br>
+
     <div class="container">
         <h2> Welcome </h2>
     </div>
+    <br>
+    <br>
+    
+    <div id="gymList" class="header">
+        <h2> My Gyms </h2>
+        <input type="name" placeholder="Enter name of gym" id="gName">
+        <input type="type" placeholder="Enter the gym type" id="gType">
+        <button type="button" class="btn btn-success" onclick="postToGym()" > Save Changes </button>
+        <button type="button" class="btn btn-success" onclick="addList()" > Add To List </button>
+    </div>
+    <ul id="gymUl">
+
+    </ul>
     <br>
     <br>
     <div>
@@ -26,7 +40,7 @@
     <div id="createGymModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
     
-        
+    
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -59,16 +73,57 @@
             <h4 class="modal-title"> Read your gyms </h4>
           </div>
           <div class="modal-body">
-            <p> Here are your gyms  </p>
+            <p> Click `Show All Gyms` to see all your gyms, or type below to find a specific gym </p>
+            <input type="id" placeholder = "Enter gym id here" id="id">
           </div>
           <div class="modal-footer"></div>
             <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal" onclick="getAllGyms()"> Show All Gyms </button>
+            <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal" onclick="getGymId()"> Show By Id</button>
          
           </div>
         </div>
     
       </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="equipmentList">
+        <h4> Equipment </h4>
+        <br>
+        <p> please select what you would like to do with the equipment database </p>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createEquipmentModal"> Create</button>
+
+    
+    <div id="createEquipmentModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+    
+    
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"> Create equipment </h4>
+          </div>
+          <div class="modal-body">
+            <p> Please enter the details for your gym here </p>
+            <input type ="Type" placeholder="Enter equipment type" id="eType">
+            <input type="Price" placeholder = "Enter equipment price" id="ePrice">
+          </div>
+          <div class="modal-footer"></div>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" onclick=> Save Changes </button>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
+
+
+
 
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateGymModal"> Update </button>
 
@@ -83,11 +138,14 @@
             <h4 class="modal-title"> Update a gym </h4>
           </div>
           <div class="modal-body">
-            <p> Please enter an id for your gym  </p>
+            <p> Please enter credentials for your gym  </p>
+            <input type="id" placeholder="Enter id to change" id="gymId">
+            <input type="newName" placeholder="Enter name or change name" id="newName">
+            <input type="newType" placeholder = "Enter type or change type" id="newType">
           </div>
           <div class="modal-footer"></div>
             <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-default btn-success" data-dismiss="modal"> Save Changes </button>
+            <button type="button" class="btn btn-default btn-success" data-dismiss="modal" onclick="putGym()"> Save Changes </button>
          
           </div>
         </div>
@@ -109,10 +167,12 @@
           </div>
           <div class="modal-body">
             <p> Please enter an id for the gym you would like to delete  </p>
+            <input type="id" placeholder="Enter the id of the gym to delete" id="deleteId">
+
           </div>
           <div class="modal-footer"></div>
             <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-default btn-success" data-dismiss="modal"> Save Changes </button>
+            <button type="button" class="btn btn-default btn-success" data-dismiss="modal" onclick="deleteGym()"> Save Changes </button>
          
           </div>
         </div>
