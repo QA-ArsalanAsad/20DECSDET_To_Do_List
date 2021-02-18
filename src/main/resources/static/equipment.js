@@ -4,6 +4,11 @@ const eType = document.querySelector("#eType");
 const ePrice = document.querySelector("#ePrice");
 const eId = document.querySelector("#eId");
 const fkId = document.querySelector("#newGymId");
+const newPrice = document.querySelector("#newPrice");
+const newEType = document.querySelector("#newEType");
+const newEId = document.querySelector("#updateEId");
+const newFkId = document.querySelector("#newFkId");
+const deleteEId = document.querySelector("#dEId");
 
 
 
@@ -98,4 +103,16 @@ const putEquipment = () => {
     .then((data) => console.log(data))
     .catch((err) => console.error(err));
 
+}
+
+
+const deleteEquipment = () => {
+    const removeEId = deleteEId.value;
+    console.log(removeEId);
+
+    fetch(`http://localhost:9092/equipment/delete/${removeEId}`, {
+        method : `DELETE`
+    })
+    .then((data) => console.log(`Query verified via json ${data}`))
+    .catch((err) => console.log(err));
 }
