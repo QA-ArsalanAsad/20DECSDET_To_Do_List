@@ -65,6 +65,12 @@
     <artifactId>springfox-boot-starter</artifactId>
     <version>3.0.0</version>
 </dependency>
+	<dependency>
+            <groupId>nl.jqno.equalsverifier</groupId>
+            <artifactId>equalsverifier</artifactId>
+            <version>3.5.3</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>

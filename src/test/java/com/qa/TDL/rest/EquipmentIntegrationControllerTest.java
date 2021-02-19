@@ -3,7 +3,6 @@ package com.qa.TDL.rest;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -23,7 +22,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.TDL.DTO.GymDTO;
+import com.qa.TDL.DTO.EquipmentDTO;
 import com.qa.TDL.persistence.domain.Equipment;
 import com.qa.TDL.persistence.domain.Gym;
 
@@ -32,15 +31,15 @@ import com.qa.TDL.persistence.domain.Gym;
 @ActiveProfiles("dev")
 @Sql(scripts = { "classpath:gym-schema.sql",
 		"classpath:gym-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
-public class GymIntegrationControllerTest {
+public class EquipmentIntegrationControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 	@Autowired
 	private ModelMapper mapper;
 
-	private GymDTO mapToDTO(Gym gym) {
-		return this.mapper.map(gym, GymDTO.class);
+	private EquipmentDTO mapToDTO(Equipment equipment) {
+		return this.mapper.map(equipment, EquipmentDTO.class);
 	}
 
 	@Autowired
@@ -53,57 +52,35 @@ public class GymIntegrationControllerTest {
 	private final Gym T_GYM_3 = new Gym(3L, "London", "CleanGym");
 	private final List<Gym> listGym = List.of(T_GYM_1, T_GYM_2, T_GYM_3);
 	private final List<Equipment> listEquipment = List.of(T_EQ_1, T_EQ_2, T_EQ_3);
-	private final String URI = "/gym";
+	private final String URI = "/equipment";
 
 	@Test
 	void testCreate() throws Exception {
-		GymDTO TEST_GYM = mapToDTO(new Gym("Manchester", "JDBCGym"));
-		GymDTO TEST_GYM_SAVED = mapToDTO(new Gym("Manchester", "JDBCGym"));
-		String testGymToJSON = this.jsonifier.writeValueAsString(TEST_GYM);
-		TEST_GYM_SAVED.setId(4L);
-		String testGymSavedToJSON = this.jsonifier.writeValueAsString(TEST_GYM_SAVED);
-		RequestBuilder rB = post(URI + "/create").contentType(MediaType.APPLICATION_JSON).content(testGymToJSON);
+		EquipmentDTO TEST_EQ = mapToDTO(new Equipment("Dumbbells", 30));
+		EquipmentDTO TEST_EQ_SAVED = mapToDTO(new Equipment("Dumbbells", 30));
+		String testEquipmentToJSON = this.jsonifier.writeValueAsString(TEST_EQ);
+		TEST_EQ_SAVED.setId(4L);
+		String testEquipmentSavedToJSON = this.jsonifier.writeValueAsString(TEST_EQ_SAVED);
+		RequestBuilder rB = post(URI + "/create").contentType(MediaType.APPLICATION_JSON).content(testEquipmentToJSON);
 		ResultMatcher checkStatus = status().isCreated();
-		ResultMatcher checkBody = content().json(testGymSavedToJSON);
+		ResultMatcher checkBody = content().json(testEquipmentSavedToJSON);
 		this.mvc.perform(rB).andExpect(checkStatus).andExpect(checkBody);
 
 	}
 
-//	@Test
-//	void testReadALL() throws Exception {
-//		List<GymDTO> gDTO = new ArrayList<>();
-//		gDTO.add(this.mapToDTO(T_GYM_1));
-//		gDTO.add(this.mapToDTO(T_GYM_2));
-//		gDTO.add(this.mapToDTO(T_GYM_3));
-//		this.mvc.perform(get(URI + "/read").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-//				.andExpect(content().json(this.jsonifier.writeValueAsString(gDTO)));
-//
-//	}
-
 	@Test
 	void testReadLatest() throws Exception {
-		T_GYM_1.setEquipment(listEquipment);
 
-		RequestBuilder rB = get(URI + "/read/" + T_GYM_1.getId()).accept(MediaType.APPLICATION_JSON);
+		RequestBuilder rB = get(URI + "/read/" + T_EQ_1.getId()).accept(MediaType.APPLICATION_JSON);
 		ResultMatcher checkStatus = status().isOk();
 		this.mvc.perform(rB).andExpect(checkStatus)
-				.andExpect(content().json(this.jsonifier.writeValueAsString(this.mapToDTO(T_GYM_1))));
+				.andExpect(content().json(this.jsonifier.writeValueAsString(this.mapToDTO(T_EQ_1))));
 
-	}
-
-	@Test
-	void testUpdate() throws Exception {
-		Gym T_GYM_1U = new Gym("London", "GymWhale");
-
-		RequestBuilder rB = put(URI + "/update/" + T_GYM_1.getId()).accept(MediaType.APPLICATION_JSON);
-		ResultMatcher checkStatus = status().isAccepted();
-		this.mvc.perform(rB).andExpect(checkStatus)
-				.andExpect(content().json(this.jsonifier.writeValueAsString(this.mapToDTO(T_GYM_1U))));
 	}
 
 	@Test
 	void testDelete() throws Exception {
-		this.mvc.perform(delete(URI + "/delete/" + T_GYM_1.getId())).andExpect(status().isGone());
+		this.mvc.perform(delete(URI + "/delete/" + T_EQ_1.getId())).andExpect(status().isGone());
 	}
 
 }
