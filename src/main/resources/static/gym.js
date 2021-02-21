@@ -7,22 +7,16 @@ const cNewName = document.querySelector("#newName");
 const cNewType = document.querySelector("#newType");
 const updateId = document.querySelector("#gymId");
 const deleteId = document.querySelector("#deleteId");
+const success = document.querySelector(".gymTitle");
 
-
-const addList = () => {
-
-    const list = document.createElement("li");
-    const v = document.getElementById("gymList").value;
-    const txt = document.createTextNode(v);
-    list.appendChild(txt);
-    if(v === ``){
-        alert ("Cannot be empty!");
-    }else{
-        document.getElementById("gymUl").appendChild(list);
-    } document.getElementById("gymList").value = "";
-
+const createSuccess = () => {
+   const popUp = document.createElement("p");
+   const txt = document.createTextNode("successful");
+   popUp.appendChild(txt);
+    success.appendChild(popUp);
 
 }
+
 
 
 
@@ -49,6 +43,7 @@ const postToGym = () => {
     })
     .then((response) => response.json())
     .then((data) => console.info(`Query verified via json ${data}`))
+	.then(createSuccess())
     .catch((err) => console.error(err));
 }
 

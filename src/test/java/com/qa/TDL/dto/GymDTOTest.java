@@ -22,11 +22,15 @@ public class GymDTOTest {
 	@Test
 	public void hashCodeTest() {
 		testDTO.hashCode();
+		assertTrue(testDTO instanceof GymDTO);
+		assertNotNull(testDTO);
 	}
 
 	@Test
 	public void toStringTest() {
 		testDTO.toString();
+		assertTrue(testDTO instanceof GymDTO);
+		assertNotNull(testDTO);
 
 	}
 
