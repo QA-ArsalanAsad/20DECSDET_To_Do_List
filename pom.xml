@@ -11,11 +11,15 @@
 	<groupId>com.example</groupId>
 	<artifactId>20DECSDET2-TDL</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<packaging>war</packaging>
+	
 	<name>20DECSDET2-TDL</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
