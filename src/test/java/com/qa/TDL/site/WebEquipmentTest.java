@@ -50,6 +50,7 @@ public class WebEquipmentTest {
 
 		targ = driver.findElement(By.xpath("/html/body/button[5]"));
 		targ.click();
+		Thread.sleep(2000);
 		targ = driver.findElement(By.xpath("//*[@id=\"ePrice\"]"));
 		targ.sendKeys("30");
 		targ = driver.findElement(By.xpath("//*[@id=\"eType\"]"));
@@ -72,6 +73,7 @@ public class WebEquipmentTest {
 
 		targ = driver.findElement(By.xpath("/html/body/button[6]"));
 		targ.click();
+		Thread.sleep(2000);
 		targ = driver.findElement(By.xpath("//*[@id=\"eId\"]"));
 		targ.sendKeys("1");
 		targ = driver.findElement(By.xpath("//*[@id=\"readEquipmentModal\"]/div/div/button[3]"));
@@ -90,6 +92,7 @@ public class WebEquipmentTest {
 
 		targ = driver.findElement(By.xpath("/html/body/button[7]"));
 		targ.click();
+		Thread.sleep(2000);
 		targ = driver.findElement(By.xpath("//*[@id=\"updateEId\"]"));
 		targ.sendKeys("1");
 		targ = driver.findElement(By.xpath("//*[@id=\"newEType\"]"));
@@ -111,6 +114,7 @@ public class WebEquipmentTest {
 
 		targ = driver.findElement(By.xpath("/html/body/button[8]"));
 		targ.click();
+		Thread.sleep(2000);
 		targ = driver.findElement(By.xpath("//*[@id=\"dEId\"]"));
 		targ.sendKeys("1");
 		targ = driver.findElement(By.xpath("//*[@id=\"deleteEquipmentModal\"]/div/div/button[2]"));
